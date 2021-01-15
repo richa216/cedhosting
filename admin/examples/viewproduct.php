@@ -318,6 +318,7 @@
                     <tr>
                         <th>Product Parent Name</th>
                         <th>Product Name</th>
+                        <th>Link</th>
                         <th>Product Availability</th>
                         <th>Product Launch Date</th>
                         <th>Monthly Price</th>
@@ -340,9 +341,9 @@
                   foreach($y as $key=>$value)
                   {
                     echo '<tr>';
-                    foreach($y as $key=>$value)
+                    foreach($y as $key=>$value1)
                     {
-                      echo '<td>'.$value.'</td>';
+                      echo '<td>'.$value1.'</td>';
 
                     }
                    

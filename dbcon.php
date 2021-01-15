@@ -101,9 +101,12 @@
 
         function GetProductDesc($id)
         {
-            $sql3=  "SELECT * FROM `tbl_product` as tp join `tbl_product_description` as tdp where tp.id = tdp.prod_id;";
+            $sql3=  "SELECT * FROM `tbl_product` as tp join `tbl_product_description` as tdp where tp.id='{$id}' AND tp.id = tdp.prod_id;";
             $data=$this->con->query($sql3);
+            
+          
             $arr['data']=array();
+               
             while ($row=$data->fetch_assoc())
             {
                 if ($row['prod_available']=='1')
@@ -120,12 +123,21 @@
                 $freedomain=$decoded_description->{'freedomain'};
                 $languagetechnology=$decoded_description->{'languagetechnology'};
                 $mailbox=$decoded_description->{'mailbox'};
-                $prod_parent_id=$row['prod_parent_id'];
+              
+            
                 $arr = array($row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox);
             }
-            return $arr;  
+        
+                return $arr;  
         }
+        // function RedirecHomePage($id)
+        // {
 
+        //         $sql3=  "SELECT `prod_id` FROM `tbl_product_description`  where prod_id!={$id};";
+        //         $result=$this->con->query($sql3);
+        //         $x=$result->fetch_assoc();
+        //         return $x;
+        // }
 
 
     }

@@ -582,7 +582,7 @@
               console.log(prod_launch);
               document.getElementById('productcategory1').value =  prod_name;
               document.getElementById('id1').value =  id;
-
+              $('#exampleModal').modal();
 
               $('#updatecategory').click(function(){
                 $.ajax({
@@ -597,6 +597,8 @@
                     // window.location.href = 'login.php';
                     }
               });
+
+             
               location.reload();
 
               });

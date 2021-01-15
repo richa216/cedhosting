@@ -173,7 +173,7 @@
 
         }
 
-          
+   
             function GetAllProductDetails()
             {
             
@@ -182,6 +182,7 @@
                 $arr['data']=array();
                 while ($row=$data->fetch_assoc())
                 {
+                   
                     if ($row['prod_available']=='1')
                     {
                         $available="available";
@@ -204,7 +205,6 @@
                 }
                 return $arr;  
             }
-
 
 
             

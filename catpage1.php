@@ -102,37 +102,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="tab-prices">
 						<div class="container">
 							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-								<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
-									<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">IN Hosting</a></li>
-									<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">US Hosting</a></li>
-									</ul>
 								<div id="myTabContent" class="tab-content">
-									<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-										<div class="linux-prices">
+									
 										<?php
-											for ($i=0;$i<count($datacon);$i++)
-											{
-												'<div class="col-md-3 linux-price">
-												 <div class="linux-top">
-												 <h4>Standard</h4>
-												 </div>
-						                         <div class="linux-bottom">
-							                     <h5>₹'..' <span class="month">per Month</span></h5>
-						                         <h5>₹'..' <span class="month">per Annum</span></h5>
-							                    <h6>Single Domain</h6>
-						                     	<ul>
-						                        	<li><strong>'..'GB </strong> Web Space</li>
-							                        <li><strong>'..'GB </strong>Bandwidth</li>
-							                        <li><strong>'..' </strong> Mailbox</li>
-													<li><strong>'..' </strong> Free Domain</li>
-													<li><strong>'..' </strong> Language/Technology</li>
-													<li><strong>High Performance</strong>  Servers</li>
-													<li><strong>location</strong> : <img src="images/india.png"></li>
-							                    </ul>
-						            </div>
-					                         	<a href="javascript:void(0)" data-id='..' id="addtocart">buy now</a>
-				                </div>';
-			                                 	}
+										    include_once 'dbcon.php';
+											$x = new product();
+											$y = $x->GetProductDesc($_GET['id']);
+											
+											echo $_GET['id'];	  
+												
+													echo '<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">';
+										echo '<div class="linux-prices">';
+
+													echo '<div class="col-md-3 linux-price">';
+													echo '<div class="linux-top">';
+													echo '<h4>Standard</h4>';
+													echo '</div>';
+													echo '<div class="linux-bottom">';
+													echo '<ul>';
+												
+													
+														echo '<h5>'.'₹'.$y[3].'<span class="month">'."per Month".'</span>'.'</h5>';
+														echo '<h5>'.'₹'.$y[4].'<span class="month">'."per Annum".'</span>'.'</h5>';
+													
+													 
+														echo'<h6>Single Domain</h6>';
+													  echo '<li><strong> '.$y[6].'GB </strong> Web Space'.'</li>';
+													  echo '<li><strong> '.$y[7].'GB </strong> Band Width'.'</li>';
+													  echo '<li><strong> '.$y[9].'</strong>Language/Technology '.'</li>';
+													  echo '<li><strong>High Performance</strong>  Servers</li>';
+													  echo '<li><strong>location</strong> : <img src="images/india.png"></li>';
+								       
+												
+													echo '</ul>';
+													echo '</div>';
+													echo '<a href="javascript:void(0)" id="addtocart">add to cart</a>';
+													echo '</div>';
 											?>
 									
 										

@@ -39,16 +39,21 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 									<ul class="dropdown-menu" id="dm">
 									<?php
+									
 										include_once 'dbcon.php';
 										$z = new product();
+									
 										$value  = $z->selectproductname();
-										foreach($value as $key=>$value)
-										{
-										
-												
-												echo '<li><a href="catpage1.php?id='.$value['id'].'">'.$value['prod_name'].'</a></li>'; 
+											foreach($value as $key=>$value)
+											{
 											
-											}
+													
+													echo '<li><a href="catpage1.php?id='.$value['id'].'">'.$value['prod_name'].'</a></li>'; 
+												
+												}
+									
+										
+							
 											?>
 									</ul>			
 								</li>
