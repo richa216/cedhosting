@@ -180,29 +180,47 @@
                 $sql3=  "SELECT * FROM `tbl_product` as tp join `tbl_product_description` as tdp where tp.id = tdp.prod_id;";
                 $data=$this->con->query($sql3);
                 $arr['data']=array();
-                while ($row=$data->fetch_assoc())
+                $y=mysqli_num_rows($data);
+                if($y>0)
                 {
-                   
-                    if ($row['prod_available']=='1')
+
+                    while ($row=$data->fetch_assoc())
                     {
-                        $available="available";
+                     
+                       
+                        if ($row['prod_available']=='1')
+                        {
+                            $available="available";
+                        }
+                        else
+                        {
+                                $available="unavailable";
+                        }
+                        $decoded_description=json_decode($row['description']);
+                        $webspace=$decoded_description->{'webspace'};
+                        $bandwidth=$decoded_description->{'bandwidth'};
+                        $freedomain=$decoded_description->{'freedomain'};
+                        $languagetechnology=$decoded_description->{'languagetechnology'};
+                        $mailbox=$decoded_description->{'mailbox'};
+                        $prod_parent_id=$row['prod_parent_id'];
+                        $sql="SELECT `prod_name` FROM `tbl_product` WHERE `id`='$prod_parent_id'";
+                        $roww=$this->con->query($sql);
+                        $x=mysqli_num_rows($roww);
+                        if($x>0)
+                        {
+                            $data1=$roww->fetch_assoc();
+                            $arr = array($data1['prod_name'],$row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox);
+    
+                        }
+                        else
+                        {
+                            $data1=$roww->fetch_assoc();
+                            $arr = array($row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox); 
+                        }
+    
                     }
-                    else
-                    {
-                            $available="unavailable";
-                    }
-                    $decoded_description=json_decode($row['description']);
-                    $webspace=$decoded_description->{'webspace'};
-                    $bandwidth=$decoded_description->{'bandwidth'};
-                    $freedomain=$decoded_description->{'freedomain'};
-                    $languagetechnology=$decoded_description->{'languagetechnology'};
-                    $mailbox=$decoded_description->{'mailbox'};
-                    $prod_parent_id=$row['prod_parent_id'];
-                    $sql="SELECT * FROM `tbl_product` WHERE `id`='$prod_parent_id'";
-                    $roww=$this->con->query($sql);
-                    $data1=$roww->fetch_assoc();
-                    $arr = array($data1['prod_name'],$row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox);
                 }
+
                 return $arr;  
             }
 

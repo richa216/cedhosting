@@ -101,7 +101,7 @@
 
         function GetProductDesc($id)
         {
-            $sql3=  "SELECT * FROM `tbl_product` as tp join `tbl_product_description` as tdp where tp.id='{$id}' AND tp.id = tdp.prod_id;";
+            $sql3=  "SELECT * FROM `tbl_product` as tp join `tbl_product_description` as tdp where tp.prod_parent_id='{$id}' AND  tdp.prod_id = tp.prod_parent_id AND tp.prod_available='1';";
             $data=$this->con->query($sql3);
             
           
@@ -125,10 +125,22 @@
                 $mailbox=$decoded_description->{'mailbox'};
               
             
-                $arr = array($row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox);
+                $arr = array($row['prod_id'],$row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox);
             }
         
                 return $arr;  
+        }
+
+
+
+
+        function GetProductDesc1($id)
+        {
+            $sql3=  "SELECT * FROM `tbl_product` as tp join `tbl_product_description` as tdp where tp.prod_parent_id='{$id}' AND  tdp.prod_id = tp.prod_parent_id AND tp.prod_available='1';";
+          
+            $data=$this->con->query($sql3);
+            $x = mysqli_num_rows($data);
+            return $x;  
         }
         // function RedirecHomePage($id)
         // {

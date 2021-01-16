@@ -318,7 +318,7 @@
                     <tr>
                         <th>Product Parent Name</th>
                         <th>Product Name</th>
-                        <th>Link</th>
+                        
                         <th>Product Availability</th>
                         <th>Product Launch Date</th>
                         <th>Monthly Price</th>
@@ -337,24 +337,17 @@
                   include_once 'admin_dbcon.php';
                   $x = new ProductDescript();
                   $y = $x->GetAllProductDetails();
-                  // print_r($y);
+                
+                  echo '<tr>';
                   foreach($y as $key=>$value)
                   {
-                    echo '<tr>';
-                    foreach($y as $key=>$value1)
-                    {
-                      echo '<td>'.$value1.'</td>';
-
+                   
+                    
+                      echo '<td>'.$value.'</td>';
                     }
+                  echo '<td>'.'<input type="submit" id="edit" value="edit" class="btn btn-primary edit" name="edit">'.'<input type="submit" id="delete" value="delete" class="btn btn-danger delete">'.'</td>';
                    
-                   
-                     
-                   
-                    echo '<td>'.'<input type="submit" id="edit" value="edit" class="btn btn-primary edit" name="edit">'.'<input type="submit" id="delete" value="delete" class="btn btn-danger delete">'.'</td>';
-                   
-                    echo '</tr>';
-                  }
-
+                  echo '</tr>';
                  ?>
                 
               </table>

@@ -61,8 +61,8 @@
                                 <li><a href="blog.php">Blog</a></li>
 								<li><a href="contact.php">Contact</a></li>
                                 <li class="active">
-                                 <a href="cart.php" id="fa-fa-font-size" >
-                                 <i class="fa fa-shopping-cart">
+                                 <a href="addcart.php" id="fa-fa-font-size" >
+                                 <i class="fa fa-shopping-cart" style="font-size:36px">
                                  <span class="badge badge-info"></span>
                                  </i>
                                  </a>

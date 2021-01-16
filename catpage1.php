@@ -108,36 +108,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										    include_once 'dbcon.php';
 											$x = new product();
 											$y = $x->GetProductDesc($_GET['id']);
-											
-											echo $_GET['id'];	  
-												
-													echo '<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">';
-										echo '<div class="linux-prices">';
+											$z = $x->GetProductDesc1($_GET['id']);
+											echo $_GET['id'];
+											// echo $y[0];
+											if($z>0)
+											{
+												echo '<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">';
+												echo '<div class="linux-prices">';
+		
+															echo '<div class="col-md-3 linux-price">';
+															echo '<div class="linux-top">';
+															echo '<h4>Standard</h4>';
+															echo '</div>';
+															echo '<div class="linux-bottom">';
+															echo '<ul>';
+									
+															
+																echo '<h5 id="month">'.'₹'.$y[4].'<span class="month">'."per Month".'</span>'.'</h5>';
+																echo '<h5 id="annual">'.'₹'.$y[5].'<span class="month">'."per Annum".'</span>'.'</h5>';
+															
+															 
+																echo'<h6>Single Domain</h6>';
+																
+															  echo '<li><strong> '.$y[7].'GB </strong> Web Space'.'</li>';
+															  echo '<li><strong> '.$y[8].'GB </strong> Band Width'.'</li>';
+															  echo '<li><strong> '.$y[10].'</strong>Language/Technology '.'</li>';
+															  echo '<li><strong>High Performance</strong>  Servers</li>';
+															  echo '<li><strong>location</strong> : <img src="images/india.png"></li>';
+											   
+														
+															echo '</ul>';
 
-													echo '<div class="col-md-3 linux-price">';
-													echo '<div class="linux-top">';
-													echo '<h4>Standard</h4>';
-													echo '</div>';
-													echo '<div class="linux-bottom">';
-													echo '<ul>';
+												echo '</div>';
+
+												echo '<a href="javascript:void(0)" id="addtocart" class="btn btn-primary edit" name="edit">add to cart</a>';
+												echo '</div>';
+															
+											
+
+											}
+											else
+											{
+												echo '<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">';
+												echo '<div class="linux-prices">';
+                                                echo '<script> window.location.replace("index.php");</script>';
+												echo '</div>';
+												echo '</div>';
+
+											}
+											 
 												
-													
-														echo '<h5>'.'₹'.$y[3].'<span class="month">'."per Month".'</span>'.'</h5>';
-														echo '<h5>'.'₹'.$y[4].'<span class="month">'."per Annum".'</span>'.'</h5>';
-													
-													 
-														echo'<h6>Single Domain</h6>';
-													  echo '<li><strong> '.$y[6].'GB </strong> Web Space'.'</li>';
-													  echo '<li><strong> '.$y[7].'GB </strong> Band Width'.'</li>';
-													  echo '<li><strong> '.$y[9].'</strong>Language/Technology '.'</li>';
-													  echo '<li><strong>High Performance</strong>  Servers</li>';
-													  echo '<li><strong>location</strong> : <img src="images/india.png"></li>';
-								       
-												
-													echo '</ul>';
-													echo '</div>';
-													echo '<a href="javascript:void(0)" id="addtocart">add to cart</a>';
-													echo '</div>';
+	
 											?>
 									
 										
@@ -271,10 +292,97 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				</div>
-		<!-- Wordpress Features -->
+		<!-- Modal -->
+
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form role="form">
+    
+
+
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <input class="form-control"  placeholder="Product Id" name="id1" type="text" id="id1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+				  <select class="form-control" name="plan" id="plan">
+				    <option disabled>Please Select Plan</option>
+				     <option value="Annual">Annual</option>
+					 <option value="Monthly">Monthly</option>
+				  </select>
+                 
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <button type="button" class="btn btn-primary mt-4" id="addtocart1" name="addtocart1">Add to cart</button>
+                </div>
+              </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+          
+
+
+
+
 			<!---footer--->
 			<?php include 'footer.php';?>
 			<!---footer--->
+
+		<script>
+		   $(document).ready(function()
+		   {
+			   $('#addtocart').click(function(){
+				var currLoc = $(location).attr('href');
+				var split = currLoc.split("=");
+				console.log(split[1].replace('#',''));
+
+				var x = split[1].replace('#','');
+				$('#id1').val(x);
+				   $('#exampleModal').modal();
+				});
+				
+
+
+				$('#addtocart1').click(function()
+				{
+					$y = document.getElementById("month").innerText;
+					console.log($y);
+					$.ajax({
+							method:'POST',
+							url:'addcart.php',
+							data:$("form").serialize(),
+							success:function(data)
+							{
+							debugger;
+							// alert('login successfuly');
+							console.log(data);
+							}
+                        });
+					window.location.replace("addcart.php");
+				});
+
+			});
+			
+		   
+
+		</script>
+			
 
 			
 			
