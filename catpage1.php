@@ -304,10 +304,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </button>
       </div>
       <div class="modal-body">
-      <form role="form">
-    
-
-
+      <form role="form" action='addcart.php'>
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <input class="form-control"  placeholder="Product Id" name="id1" type="text" id="id1">
@@ -327,11 +324,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="text-center">
                   <button type="button" class="btn btn-primary mt-4" id="addtocart1" name="addtocart1">Add to cart</button>
                 </div>
-              </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+        </form>
+        </div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
     </div>
   </div>
 </div>
@@ -361,23 +358,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				$('#addtocart1').click(function()
 				{
-					$y = document.getElementById("month").innerText;
-					console.log($y);
+				    var y = $('#plan').val();
+					var id2 = $('#id1').val();
+					// console.log(y);
 					$.ajax({
 							method:'POST',
-							url:'addcart.php',
-							data:$("form").serialize(),
+							url:'addcarthelper.php',
+							data:{
+								id1:id2,
+								plan:y,
+								
+							},
 							success:function(data)
 							{
 							debugger;
 							// alert('login successfuly');
 							console.log(data);
+							$(location).attr('href','addcart.php?id='+data);
 							}
                         });
-					window.location.replace("addcart.php");
 				});
 
-			});
+			 });
 			
 		   
 

@@ -108,7 +108,8 @@ $(document).ready(function(){
 									}
 									else
 									{
-										alert(data);
+										alert('welcome to user pannel');
+										window.location.href = 'index.php';
 									}
 									
 									console.log(data);

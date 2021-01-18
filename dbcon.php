@@ -152,6 +152,27 @@
         // }
 
 
+        function GetAllProductDetails1($id)
+        {
+        
+            $sql3=  "SELECT * FROM `tbl_product` as tp join `tbl_product_description` as tdp where tp.prod_parent_id='{$id}' AND tp.prod_parent_id = tdp.prod_id ";
+            $data=$this->con->query($sql3);
+            $arr=array();
+           
+            
+
+                while ($row=$data->fetch_assoc())
+                {
+
+                    
+                    $arr[] = array($row['prod_available'],$row['prod_name'],$row['mon_price'],$row['annual_price'],$row['sku']);
+                }
+            
+
+            return $arr;  
+        }
+
+
     }
 
 

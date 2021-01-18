@@ -179,7 +179,7 @@
             
                 $sql3=  "SELECT * FROM `tbl_product` as tp join `tbl_product_description` as tdp where tp.id = tdp.prod_id;";
                 $data=$this->con->query($sql3);
-                $arr['data']=array();
+                $arr[]=array();
                 $y=mysqli_num_rows($data);
                 if($y>0)
                 {
@@ -209,13 +209,13 @@
                         if($x>0)
                         {
                             $data1=$roww->fetch_assoc();
-                            $arr = array($data1['prod_name'],$row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox);
+                            $arr[] = array($data1['prod_name'],$row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox);
     
                         }
                         else
                         {
                             $data1=$roww->fetch_assoc();
-                            $arr = array($row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox); 
+                            $arr[] = array($row['prod_name'],$available,$row['prod_launch_date'],$row['mon_price'],$row['annual_price'],$row['sku'],$webspace,$bandwidth,$freedomain,$languagetechnology,$mailbox); 
                         }
     
                     }
@@ -223,6 +223,14 @@
 
                 return $arr;  
             }
+
+
+
+               
+
+
+
+
 
 
             

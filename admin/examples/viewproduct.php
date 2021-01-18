@@ -337,17 +337,17 @@
                   include_once 'admin_dbcon.php';
                   $x = new ProductDescript();
                   $y = $x->GetAllProductDetails();
-                
-                  echo '<tr>';
                   foreach($y as $key=>$value)
                   {
-                   
-                    
-                      echo '<td>'.$value.'</td>';
+                  echo '<tr>';
+                  foreach($value as $key1=>$value1)
+                  {
+                    echo '<td>'.$value1.'</td>';
                     }
                   echo '<td>'.'<input type="submit" id="edit" value="edit" class="btn btn-primary edit" name="edit">'.'<input type="submit" id="delete" value="delete" class="btn btn-danger delete">'.'</td>';
                    
                   echo '</tr>';
+                  }
                  ?>
                 
               </table>

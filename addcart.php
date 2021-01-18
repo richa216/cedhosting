@@ -48,28 +48,77 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <tr>
                         <th>Product ID</th>
                         <th>Product Name</th>
-                        <th>Monthly Price</th>
+                        <?php 
+                           $id = explode(";", $_GET['id']);
+                           if($id[1]=='Monthly')
+                           {
+                            echo '<th>Monthly Price</th>';  
+                           }
+                           else if($id[1]=='Annual')
+                           {
+                            echo '<th>Annual Price</th>'; 
+                           }
+                        ?>
+                        
                         <th>SKU</th>
                         <th>Quantity</th>
                         <th>Action</th>
                     </tr>
                 </thead>
+                <tbody>
+                   <?php
+                        
+                        include_once 'dbcon.php';
+                        $x = new product();
+                        $id = explode(";", $_GET['id']);
+                        $_SESSION['id'] = $id[0];
+                      
+                        $idp =  $_SESSION['id'];
+                        $y = $x->GetAllProductDetails1($id[0]);
+                        foreach($y as $key=>$value)
+                        {
+                            if($y[0][$key]==1)
+                            {
+                                echo '<tr>';
+                                echo '<td>'.$idp.'</td>';
+                                echo '<td>'.$y[0][1].'</td>';
+                                echo '<td>'.$y[0][2].'</td>';
+                                if($id[1]=='Annual')
+                                {
+                                    echo '<td>'.$y[0][4].'</td>';
+
+                                }
+                                else if($id[1]=='Monthly')
+                                {
+                                    echo '<td>'.$y[0][3].'</td>';
+                                }    
+                            }
+                            else
+                            {
+                                echo 'product not available';
+                            }
+
+                            echo '<td>'.'<input type="submit" id="edit" value="edit" class="btn btn-primary edit" name="edit">'.'</td>';
+                            
+                            echo '</tr>';
+               
+                        }
+
+
+                    ?>
+
+                </tbody>
                 </table>
             </div>
-            <a href="javascript:void(0)" id="checkoutbutton">Checkout</a>
+            <a href="login.php" id="checkoutbutton">Checkout</a>
             </div>
         </div>
     </div>
 </div>
+
 		<!-- Wordpress Features -->
 			<!---footer--->
 			<?php include 'footer.php';?>
 			<!---footer--->
-
-			
-
-			
-			
-			
 </body>
 </html>
