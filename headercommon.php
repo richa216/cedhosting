@@ -1,3 +1,13 @@
+
+<?php 
+session_start();
+if(!isset($_SESSION['email']))
+{
+	echo("Location:login.php");
+	
+}
+?>
+
 <div class="header">
 			<div class="container">
 				<nav class="navbar navbar-default">
@@ -60,16 +70,16 @@
 								<li><a href="pricing.php">Pricing</a></li>
                                 <li><a href="blog.php">Blog</a></li>
 								<li><a href="contact.php">Contact</a></li>
-								<li ><a href="addcart.php" id="fa-fa-font-size"><i class="fa fa-shopping-cart"><span class="badge badge-pill badge-dark">0</span></i></a></li>
+								<li ><a href="addcart.php" id="fa-fa-font-size"><i class="fa fa-shopping-cart"><span class="badge badge-info"></span></i></a></li>
                                 <?php
 								  if(!isset($_SESSION['email']))
 								  {
 									  echo '<li><a href="login.php">Login</a></li>';
 								  }
-								  else
-								  {
-									  echo '<li><a href="logout.php">Logout</a></li>';
-								  }
+								 else
+								 {
+									 echo '<li><A href="logout.php">Logout</a></li>';
+								 }
 
 
                             

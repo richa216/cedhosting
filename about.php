@@ -4,8 +4,12 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
+
+session_start();
+?>
 <!DOCTYPE HTML>
-.php>
+
 <head>
 <title>Planet Hosting a Hosting Category Flat Bootstrap Responsive Website Template | About :: w3layouts</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>

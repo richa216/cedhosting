@@ -14,7 +14,7 @@ $otp = rand(100000,1000000);
           $mail->SMTPAuth=true;
           $mail->SMTPSecure='tls';
           $mail->Username='vricham21@gmail.com';
-          $mail->Password='Richaverma@12345';
+          $mail->Password='Richaverma@12345345';
           $mail->setFrom('vricham21@gmail.com');
           $mail->addAddress($x);
           $mail->addReplyTo('vricham21@gmail.com');
