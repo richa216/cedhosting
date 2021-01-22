@@ -63,7 +63,7 @@ echo include 'header.php' ;
 								</div>
 								<div class="col-md-6 login-right">
 									<h3>Password Recovery</h3>
-									<p>If you have an account with us, please log in.</p>
+
 									<form>
                                     <div>
 								<span>Select your Security Question<label>*</label></span>
@@ -86,7 +86,7 @@ echo include 'header.php' ;
 										<span>User Name<label>*</label></span>
 										<input type="text" id="Name" name="Name"><br><br>  
                                         </div>
-                                        </div>
+                                        <div>
                                         <input type="submit" value="Create Password" id="Create" name ="Create">
                                         </div>
 									  </div>

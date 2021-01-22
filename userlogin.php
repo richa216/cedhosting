@@ -49,7 +49,7 @@ else
            }
            else
            {
-               echo 'error in query';
+               echo 'deatils incorrect';
            }
         }
         else
