@@ -43,6 +43,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							});
 						</script>						
 <!--script-->
+
+<style>
+#paypalpaymentbutton
+{
+	text-align: center;
+}
+</style>
 </head>
 <body>
 
@@ -57,19 +64,25 @@ echo include 'header.php' ;
 ?>
 	<!---header--->
     <div id="paypalpaymentbutton">
-   
+   <h2><b>Billing Details</b></h2><br><br>
     <?php
            
                       
-           $_SESSION['values'] = $value;
-           $values1 = $_SESSION['values'];
+           $values2 = $_SESSION['values1'];
          
-           echo '<ul>';
-       foreach($values1 as $key=>$value)
-       {
-           echo '<li>'.$value.'</li>';
+		   echo '<ul>';
+		//    print_r( $values2);
+	   $y = $_SESSION['x'];
+	   $idp =  $_SESSION['id'];
+	   echo '<li>'."Product Id:".$idp.'</li>';
+		echo '<li>'."Product Name:".$values2[1].'</li>';
+		echo '<li>'."Product Price:".$y.'</li>';
+		 
+		  
     
-       }
+	
+	  
+	  
   
        
    

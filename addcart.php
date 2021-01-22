@@ -4,10 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php
-
-session_start();
-?>
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -58,12 +55,14 @@ require_once "header.php";
                         <th>Product ID</th>
                         <th>Product Name</th>
                         <?php 
-                           $id = explode(";", $_GET['id']);
-                           if($id[1]=='Monthly')
+                        //    $id = explode(";", $_GET['id']);
+                        //    $_SESSION['id1']=$id;
+                           $pn = $_SESSION['plan'];
+                           if( $pn=='Monthly')
                            {
                             echo '<th>Monthly Price</th>';  
                            }
-                           else if($id[1]=='Annual')
+                           else if( $pn=='Annual')
                            {
                             echo '<th>Annual Price</th>'; 
                            }
@@ -79,46 +78,45 @@ require_once "header.php";
                         
                         include_once 'dbcon.php';
                         $x = new product();
-                        $id = explode(";", $_GET['id']);
-                        $_SESSION['id1']=$id;
-                        $id2 = $_SESSION['id1'];
-                        $_SESSION['id'] = $id[0];
-                      
+                        // $id = explode(";", $_GET['id']);
+                        // $_SESSION['id1']=$id;
+                        $pn = $_SESSION['plan'];
+                        // $_SESSION['id'] = $id[0];
                         $idp =  $_SESSION['id'];
-                        $y = $x->GetAllProductDetails1($id[0]);
-                        $c = 1;
-                        foreach($y as $key=>$value)
-                        {
-                            $_SESSION['values'] = $value;
-                            $values1 = $_SESSION['values'];
-                            if($y[0][$key]==1)
-                            {
+                        $prod_name =  $_SESSION['pid'];
+                        $price  = $_SESSION['aprice'];
+                        $mprice = $_SESSION['monthlyp'];
+                        $sku    = 	$_SESSION['sku'];
+
+                            // $_SESSION['values1'] = $value;
+                            // $values2 = $_SESSION['values1'];
+                          
                                 echo '<tr>';
                                 echo '<td>'.$idp.'</td>';
-                                echo '<td>'.$y[0][1].'</td>';
-                                echo '<td>'.$y[0][2].'</td>';
-                                if($id[1]=='Annual')
+                                echo '<td>'. $prod_name .'</td>';
+                               
+                               
+                                if( $pn =='Annual')
                                 {
-                                    echo '<td>'.$y[0][4].'</td>';
+                                    echo '<td>'. $price.'</td>';
+                                  
 
                                 }
-                                else if($id[1]=='Monthly')
+                                else if($pn=='Monthly')
                                 {
-                                    echo '<td>'.$y[0][3].'</td>';
-                                }    
-                            }
-                            else
-                            {
-                                echo 'product not available';
-                            }
-                               echo '<td>'.$c.'</td>';
-
-                            echo '<td>'.'<input type="submit" id="edit" value="edit" class="btn btn-primary edit" name="edit">'.'</td>';
+                                    echo '<td>'. $mprice .'</td>';
+                                 
+                                } 
+                                echo '<td>'. $sku.'</td>';   
+                                echo '<td>'.'1'.'</td>';   
+                            
+                            $_SESSION['items']= sizeof($_SESSION['values1']);
+                            echo '<td>'.'<input type="submit" id="remove" value="remove" class="btn btn-primary edit" name="edit">'.'</td>';
                             
                             echo '</tr>';
                
-                        }
-                        $c=$c+1;
+                        
+                      
                 
 
                     ?>

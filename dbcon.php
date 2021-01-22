@@ -1,4 +1,6 @@
 <?php
+
+
    class dbcon
    {
        public $server;
@@ -51,6 +53,30 @@
             $row = $n['is_admin'];
             return $row;
 
+        }
+        function Selectques($email)
+        {
+            $sql1 = "SELECT `security_question`,`security_answer` from `tbl_user` where `email` = '{$email}';";
+            $m = $this->con->query($sql1);
+          
+            $arr = array();
+            while($row = $m->fetch_assoc())
+            {
+                $arr=array(
+                    "security_question"=>$row['security_question'],
+                    "security_answer"       =>$row['security_answer']
+          
+                );
+
+            }
+            return $arr;
+        }
+
+        function updatepasword($email,$pwd)
+        {
+            $sql1 = "UPDATE `tbl_user` SET  `password` = '{$pwd}' where `email` = '{$email}'";
+            $result = $this->con->query($sql1);
+            return $result;
         }
         
     } 

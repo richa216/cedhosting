@@ -4,10 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php
-
-session_start();
-?>
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -37,7 +34,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--script-->
 </head>
 <body>
-<?php include_once 'dbcon.php'; ?>
+<?php 
+include_once 'dbcon.php'; ?>
 	<!---header--->
     <?php include 'header.php';?>
 		<!---singleblog--->
@@ -297,6 +295,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				</div>
+
+				<?php
+				$_SESSION['id'] = $_GET['id'];
+				$y = $x->GetAllProductDetails1($_GET['id']);
+				$_SESSION['values1'] = $y;
+				$y1 =  $_SESSION['values1'];
+				foreach($y1 as $key=>$value)
+				{
+					// $_SESSION['values1'] = $value;
+					// $values2 = $_SESSION['values1'];
+					$_SESSION['available'] = $y[0][$key];
+					$y5 = $_SESSION['available'];
+					if($y5 ==1)
+					{
+					
+					
+						$_SESSION['pid'] = $y[0][1];
+						$_SESSION['aprice'] = $y[0][3];
+						$_SESSION['monthlyp'] = $y[0][2];
+						$_SESSION['sku']       = $y[0][4];
+					
+					
+				
+					}
+					else{
+					
+						$_SESSION['msg'] =  "Product not available";
+
+					}
+			
+					
+
+					
+				
+	   
+				}
+			  
+				?>
 		<!-- Modal -->
 
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

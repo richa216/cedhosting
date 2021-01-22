@@ -80,8 +80,8 @@ echo include 'header.php' ;
 										<span>Password<label>*</label></span>
 										<input type="password" id="password" name="password">  
 									  </div>
-									  <a class="forgot" href="#">Forgot Your Password?</a>
-									  <input type="submit" value="Login" id="login">
+									  <a class="forgot" href="forgetpassword.php">Forgot Your Password?</a>
+									  <input type="submit" value="Login" id="login" name="login">
 									</form>
 								</div>	
 								<div class="clearfix"> </div>
@@ -114,7 +114,7 @@ $(document).ready(function(){
 										alert('welcome to admin pannel');
 										window.location.href = 'admin/examples/dashboard.php';
 									}
-									else
+									else if(data==1)
 									{
 										alert('welcome to user pannel');
 										window.location.href = 'index.php';

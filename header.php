@@ -60,7 +60,8 @@
 								<li><a href="pricing.php">Pricing</a></li>
                                 <li><a href="blog.php">Blog</a></li>
 								<li><a href="contact.php">Contact</a></li>
-								<li ><a href="addcart.php" id="fa-fa-font-size"><i class="fa fa-shopping-cart"><span class="badge badge-pill badge-dark">0</span></i></a></li>
+								<li><a href="addcart.php" id="fa-fa-font-size"><i class="fa fa-shopping-cart"><span class="badge badge-pill badge-dark"><?php $item = $_SESSION['items'];
+								 echo $item; ?></span></i></a></li>
                                 <?php
 								  if(!isset($_SESSION['email']))
 								  {
